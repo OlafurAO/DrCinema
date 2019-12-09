@@ -32,11 +32,12 @@ class Cinemas extends React.Component {
 	}
 
 	fetchCinemas(token) {
-		fetch('http://api.kvikmyndir.is/theaters?token=' + token, {
+		fetch('http://api.kvikmyndir.is/theaters', {
 			method: 'GET',
 			headers: {
       	'Content-Type': 'application/json',
-				'Accept': 'application/json'
+				'Accept': 'application/json',
+				'x-access-token': token
 			},
 		}).then(response => {
 			console.log(response)
