@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, FlatList, Linking, TouchableOpacity } from 'react-native';
+import styles from './styles.js';
 
 const credentials = {
 	username: 'OliAO',
@@ -40,16 +41,38 @@ class Cinemas extends React.Component {
 				'x-access-token': token
 			},
 		}).then(response => {
-			console.log(response)
 			return response.json();
 		}).then(response => {
-			console.log(response)
+			this.setState({
+				cinemas: response,
+			});
 		}).catch(error => console.log(error));
+	}
+
+	goToWebsite(url) {
+		Linking.openURL('http://' + url)
+		.catch(err => console.log(err));
 	}
 
 	render() {
 		return(
-			<Text> Cinema bois </Text>
+			<View style={styles.container}>
+				<FlatList style={styles.cinemaContainer}
+					numColumns={1}
+	        data={this.state.cinemas}
+					initialNumToRender={50}
+	        renderItem={ ({ item: { id, name, address, city, description, phone, website }}) => {
+						return(
+							<View style={styles.cinema}>
+								<Text> { name } </Text>
+								<TouchableOpacity onPress={ () => this.goToWebsite(website)}>
+									<Text> { website } </Text>
+								</TouchableOpacity>
+							</View>
+						)
+					}}keyExtractor={cinema => cinema.name}
+				/>
+		</View>
 		);
 	}
 }
