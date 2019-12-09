@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 const credentials = {
-	username: 'Olafurao',
-	password: 'Kartafla96',
+	username: 'OliAO',
+	password: 'Password123',
 }
 
 class Cinemas extends React.Component {
