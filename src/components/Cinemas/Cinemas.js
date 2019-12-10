@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, FlatList, Linking, TouchableOpacity } from 'react-native';
-import { getCinemas} from '../../services/apiService';
+import { getCinemas } from '../../services/apiService';
 import styles from './styles.js';
 
 class Cinemas extends React.Component {
 	componentDidMount() {
-		getCinemas(this.props.token, cinemas => this.setCinemas(cinemas));
+		getCinemas(this.props.token,
+			cinemas => this.setCinemas(cinemas)
+		);
 	}
 
 	constructor(props) {
@@ -16,13 +18,24 @@ class Cinemas extends React.Component {
 	}
 
 	setCinemas(cinemas) {
-		/*cinema = cinemas.sort((a, b) => {
+		cinemas = cinemas.sort((a, b) => {
 			return a.name > b.name;
-		});*/
+		});
 
-		console.log(cinemas);
+		/*
+		var newCinemas = [];
+		for(const cinema of cinemas) {
+			var newCinema = {};
+			Object.keys(cinema).map(key => {
+				newCinema[key.trim()] = cinema[key];
+				newCinemas.push(newCinema);
+			});
+		}*/
+
+		newCinemas = cinemas;
+
 		this.setState({
-			cinemas: cinemas,
+			cinemas: newCinemas,
 		});
 	}
 
@@ -32,7 +45,6 @@ class Cinemas extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.token)
 		return(
 			<View style={styles.container}>
 				<FlatList
@@ -40,7 +52,6 @@ class Cinemas extends React.Component {
 	        data={this.state.cinemas}
 					initialNumToRender={50}
 	        renderItem={ ({ item: { id, name, address, city, description, phone, website }}) => {
-						console.log(address)
 						return(
 							<View style={styles.cinema}>
 								<TouchableOpacity onPress={
@@ -56,7 +67,7 @@ class Cinemas extends React.Component {
 								</TouchableOpacity>
 							</View>
 						)
-					}}keyExtractor={cinema => cinema.name}
+					}}keyExtractor={cinema => {return cinema.name}}
 				/>
 		</View>
 		);

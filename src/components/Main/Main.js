@@ -38,9 +38,10 @@ class Main extends React.Component{
 			);
 		}
 		return(
-			<Text> Loading </Text>
+			<View>
+				<Text> Loading </Text>
+			</View>
 		)
-
 	}
 }
 

@@ -38,7 +38,7 @@ class Movies extends React.Component {
 						return(
 							<Text> { title } </Text>
 						);
-					}}keyExtractor={movie => movie.name}
+					}}keyExtractor={movie => {return movie.id.toString()}}
 				/>
 			</View>
 		);
