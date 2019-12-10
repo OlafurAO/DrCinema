@@ -20,7 +20,7 @@ class Cinemas extends React.Component {
 			return a.name > b.name;
 		});*/
 
-		//console.log(cinema);
+		console.log(cinemas);
 		this.setState({
 			cinemas: cinemas,
 		});
@@ -32,6 +32,7 @@ class Cinemas extends React.Component {
 	}
 
 	render() {
+		console.log(this.props.token)
 		return(
 			<View style={styles.container}>
 				<FlatList

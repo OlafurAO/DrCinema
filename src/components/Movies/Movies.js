@@ -35,7 +35,6 @@ class Movies extends React.Component {
 					data={this.state.movies}
 					initialNumToRender={50}
 					renderItem={ ({ item: { id, title, poster, plot, duration, year, genre }}) => {
-						console.log('ye');
 						return(
 							<Text> { title } </Text>
 						);
