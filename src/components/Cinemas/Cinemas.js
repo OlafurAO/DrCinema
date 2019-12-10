@@ -39,7 +39,7 @@ class Cinemas extends React.Component {
 	        data={this.state.cinemas}
 					initialNumToRender={50}
 	        renderItem={ ({ item: { id, name, address, city, description, phone, website }}) => {
-						console.log(address)
+						console.log('cinema');
 						return(
 							<View style={styles.cinema}>
 								<TouchableOpacity onPress={

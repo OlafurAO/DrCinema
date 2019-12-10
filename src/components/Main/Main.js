@@ -6,8 +6,8 @@ import { getToken } from '../../services/apiService';
 import styles from './styles';
 
 const credentials = {
-	username: 'OliAO',
-	password: 'Password123',
+	username: 'stefant17',
+	password: 'Hilla104',
 }
 
 class Main extends React.Component{
