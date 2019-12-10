@@ -4,15 +4,17 @@ import styles from './styles.js';
 
 class Header extends React.Component{
 	render() {
+		const { navigation } = this.props;
+		const { token } = this.props;
 		return(
 			<View style={styles.container}>
 				<TouchableOpacity style={styles.cinemasButton} onPress={
-					() => this.props.navigation.navigate('Main')
+					() => navigation.navigate('Main')
 				}>
 					<Text style={styles.text}> Cinemas </Text>
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.moviesButton} onPress={
-					() => this.props.navigation.navigate('Main')
+					() => navigation.navigate('Movies', {token: token})
 				}>
 					<Text style={styles.text}> Movies </Text>
 				</TouchableOpacity>

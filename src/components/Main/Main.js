@@ -31,7 +31,7 @@ class Main extends React.Component{
 	render() {
 		return(
 			<View style={styles.container}>
-				<Header navigation={ this.props.navigation }/>
+				<Header navigation={ this.props.navigation } token={ this.state.accessToken }/>
 				<Cinemas navigation={ this.props.navigation } token={ this.state.accessToken }/>
 				</View>
 		);

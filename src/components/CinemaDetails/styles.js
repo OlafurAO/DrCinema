@@ -10,20 +10,28 @@ export default StyleSheet.create({
 		marginBottom: 'auto',
 	},
 
-	cinemasButton: {
-		marginTop: 45,
-		marginRight: 'auto',
-		marginLeft: 50,
+	cinemaNameContainer: {
+		borderBottomWidth: 2,
+		padding: 20,
 	},
 
-	moviesButton: {
-		marginTop: 45,
-		marginLeft: 'auto',
-		marginRight: 70,
-	},
-
-	text: {
-		color: 'white',
+	cinemaName: {
 		fontSize: 20,
+	},
+
+	cinemaDescContainer: {
+
+	},
+
+	cinemaDesc: {
+		marginBottom: 20,
+	},
+
+	cinemaAddressContainer: {
+
+	},
+
+	cinemaWebsite: {
+		color: 'blue',
 	}
 });

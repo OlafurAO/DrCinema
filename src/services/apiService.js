@@ -29,6 +29,25 @@ export const getCinemas = async(token, setCinemas) => {
 	}).then(response => {
 		return response.json();
 	}).then(response => {
+
+		//response = JSON.stringify(response.replace('\t', ''));
+		console.log(response);
 		setCinemas(response);
+	}).catch(error => console.log(error));
+}
+
+export const getMovies = async(token, setMovies) => {
+	fetch('http://api.kvikmyndir.is/movies', {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'x-access-token': token
+		},
+	}).then(response => {
+		return response.json();
+	}).then(response => {
+		//console.log(response)
+		setMovies(response);
 	}).catch(error => console.log(error));
 }

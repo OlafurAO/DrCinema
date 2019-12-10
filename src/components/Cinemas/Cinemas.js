@@ -18,7 +18,9 @@ class Cinemas extends React.Component {
 	setCinemas(cinemas) {
 		cinema = cinemas.sort((a, b) => {
 			return a.name > b.name;
-		})
+		});
+
+		//console.log(cinema);
 		this.setState({
 			cinemas: cinemas,
 		});
@@ -30,7 +32,6 @@ class Cinemas extends React.Component {
 	}
 
 	render() {
-		console.log('token: ' + this.props.token)
 		return(
 			<View style={styles.container}>
 				<FlatList
@@ -38,12 +39,14 @@ class Cinemas extends React.Component {
 	        data={this.state.cinemas}
 					initialNumToRender={50}
 	        renderItem={ ({ item: { id, name, address, city, description, phone, website }}) => {
+						console.log(address)
 						return(
 							<View style={styles.cinema}>
 								<TouchableOpacity onPress={
 									() => this.props.navigation.navigate('CinemaDetails', {
 										id: id, name: name, address: address, city: city,
-										description: description, phone: phone, website: website, 
+										description: description, phone: phone, website: website,
+										token: this.props.token,
 									})}>
 									<Text style={styles.cinemaName}> { name } </Text>
 								</TouchableOpacity>
