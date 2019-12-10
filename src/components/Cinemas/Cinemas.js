@@ -1,52 +1,27 @@
 import React from 'react';
 import { View, Text, FlatList, Linking, TouchableOpacity } from 'react-native';
+import { getCinemas} from '../../services/apiService';
 import styles from './styles.js';
-
-const credentials = {
-	username: 'OliAO',
-	password: 'Password123',
-}
 
 class Cinemas extends React.Component {
 	componentDidMount() {
-		fetch('http://api.kvikmyndir.is/authenticate', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-      	'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(credentials),
-		}).then(response => {
-			return response.json()
-		}).then(response => {
-			this.setState({accessToken: response.token})
-			this.fetchCinemas(response.token);
-		});
+		getCinemas(this.props.token, cinemas => this.setCinemas(cinemas));
 	}
 
 	constructor(props) {
 		super(props);
 		this.state = {
 			cinemas: null,
-			accessToken: null,
 		}
 	}
 
-	fetchCinemas(token) {
-		fetch('http://api.kvikmyndir.is/theaters', {
-			method: 'GET',
-			headers: {
-      	'Content-Type': 'application/json',
-				'Accept': 'application/json',
-				'x-access-token': token
-			},
-		}).then(response => {
-			return response.json();
-		}).then(response => {
-			this.setState({
-				cinemas: response,
-			});
-		}).catch(error => console.log(error));
+	setCinemas(cinemas) {
+		cinema = cinemas.sort((a, b) => {
+			return a.name > b.name;
+		})
+		this.setState({
+			cinemas: cinemas,
+		});
 	}
 
 	goToWebsite(url) {
@@ -55,18 +30,25 @@ class Cinemas extends React.Component {
 	}
 
 	render() {
+		console.log('token: ' + this.props.token)
 		return(
 			<View style={styles.container}>
-				<FlatList style={styles.cinemaContainer}
+				<FlatList
 					numColumns={1}
 	        data={this.state.cinemas}
 					initialNumToRender={50}
 	        renderItem={ ({ item: { id, name, address, city, description, phone, website }}) => {
 						return(
 							<View style={styles.cinema}>
-								<Text> { name } </Text>
+								<TouchableOpacity onPress={
+									() => this.props.navigation.navigate('CinemaDetails', {
+										id: id, name: name, address: address, city: city,
+										description: description, phone: phone, website: website, 
+									})}>
+									<Text style={styles.cinemaName}> { name } </Text>
+								</TouchableOpacity>
 								<TouchableOpacity onPress={ () => this.goToWebsite(website)}>
-									<Text> { website } </Text>
+									<Text style={styles.cinemaWebsite}> { website } </Text>
 								</TouchableOpacity>
 							</View>
 						)

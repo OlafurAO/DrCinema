@@ -3,16 +3,20 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
 	container: {
 		justifyContent: 'center',
-		marginBottom: 'auto',
+		marginTop: 100,
 		width: '100%',
 	},
 
-	cinemaContainer: {
-		marginTop: 40,
+	cinema: {
+		padding: 30,
+		borderBottomWidth: 2,
 	},
 
-	cinema: {
-		padding: 10,
-		marginBottom: 20,
+	cinemaName: {
+		fontSize: 20,
 	},
+
+	cinemaWebsite: {
+		color: 'blue',
+	}
 });
