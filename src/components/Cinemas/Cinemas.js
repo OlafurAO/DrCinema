@@ -16,9 +16,9 @@ class Cinemas extends React.Component {
 	}
 
 	setCinemas(cinemas) {
-		cinema = cinemas.sort((a, b) => {
+		/*cinema = cinemas.sort((a, b) => {
 			return a.name > b.name;
-		});
+		});*/
 
 		//console.log(cinema);
 		this.setState({
