@@ -29,12 +29,18 @@ class Main extends React.Component{
 	}
 
 	render() {
-		return(
-			<View style={styles.container}>
-				<Header navigation={ this.props.navigation } token={ this.state.accessToken }/>
-				<Cinemas navigation={ this.props.navigation } token={ this.state.accessToken }/>
+		if(this.state.accessToken !== null) {
+			return(
+				<View style={styles.container}>
+					<Header navigation={ this.props.navigation } token={ this.state.accessToken }/>
+					<Cinemas navigation={ this.props.navigation } token={ this.state.accessToken }/>
 				</View>
-		);
+			);
+		}
+		return(
+			<Text> Loading </Text>
+		)
+
 	}
 }
 

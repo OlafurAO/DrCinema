@@ -1,6 +1,6 @@
 const credentials = {
-	username: 'OliAO',
-	password: 'Password123',
+	username: 'Stefant17',
+	password: 'Hilla104',
 }
 
 export const getToken = async(setState) => {
@@ -14,6 +14,7 @@ export const getToken = async(setState) => {
 	}).then(response => {
 		return response.json()
 	}).then(response => {
+		console.log(response)
 		setState(response.token)
 	});
 }
@@ -31,7 +32,6 @@ export const getCinemas = async(token, setCinemas) => {
 	}).then(response => {
 
 		//response = JSON.stringify(response.replace('\t', ''));
-		console.log(response);
 		setCinemas(response);
 	}).catch(error => console.log(error));
 }
