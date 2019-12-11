@@ -10,6 +10,16 @@ export default StyleSheet.create({
 		marginBottom: 'auto',
 	},
 
+	cinemaContainer: {
+		padding: 10,
+		marginTop: -10,
+	},
+
+	movieContainer: {
+		padding: 10,
+		marginBottom: 10,
+	},
+
 	cinemaNameContainer: {
 		borderBottomWidth: 2,
 		padding: 20,
@@ -33,5 +43,22 @@ export default StyleSheet.create({
 
 	cinemaWebsite: {
 		color: 'blue',
+		borderBottomWidth: 2,
+	},
+
+	moviesHeader: {
+		fontSize: 25,
+	},
+
+	movie: {
+		padding: 10,
+		marginBottom: 10,
+		flexDirection: 'row',
+	},
+
+	poster: {
+		marginTop: 5,
+		width: 50,
+		height: 50,
 	}
 });

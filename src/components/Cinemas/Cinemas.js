@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, FlatList, Linking, TouchableOpacity } from 'react-native';
-import { getCinemas} from '../../services/apiService';
+import { getCinemas } from '../../services/apiService';
 import styles from './styles.js';
 
 class Cinemas extends React.Component {
 	componentDidMount() {
-		getCinemas(this.props.token, cinemas => this.setCinemas(cinemas));
+		getCinemas(this.props.token,
+			cinemas => this.setCinemas(cinemas)
+		);
 	}
 
 	constructor(props) {
@@ -16,13 +18,39 @@ class Cinemas extends React.Component {
 	}
 
 	setCinemas(cinemas) {
-		/*cinema = cinemas.sort((a, b) => {
+		cinemas = cinemas.sort((a, b) => {
 			return a.name > b.name;
-		});*/
+		});
 
-		console.log(cinemas);
+		/*
+		var newCinemas = [];
+		for(var i = 0; i < cinemas.length; i++) {
+			var newCinema = {}
+			for(var key in cinemas[i]) {
+				newCinema[i][key.trim()] = cinemas[i][key];
+			}
+			newCinemas.push(newCinema);
+		}*/
+
+		var newCinemas = [];
+		for(const cinema of cinemas) {
+			var newCinema = {};
+			Object.keys(cinema).map(key => {
+				newCinema[key.trim()] = cinema[key];
+				if(key === 'description') {
+					if(newCinema['description'] !== null) {
+						newCinema['description'] = JSON.stringify(newCinema['description'])
+						newCinema['description'].replace('/<[^>]*>?/gm', '');
+						console.log(newCinema['description'])
+
+					}
+				}
+			});
+			newCinemas.push(newCinema);
+		}
+
 		this.setState({
-			cinemas: cinemas,
+			cinemas: newCinemas,
 		});
 	}
 
@@ -56,7 +84,7 @@ class Cinemas extends React.Component {
 								</TouchableOpacity>
 							</View>
 						)
-					}}keyExtractor={cinema => cinema.name}
+					}}keyExtractor={cinema => {return cinema.name}}
 				/>
 		</View>
 		);

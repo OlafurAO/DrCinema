@@ -47,7 +47,7 @@ class Movies extends React.Component {
 							<Text> { title } </Text>,
 							<Text> { this.getcinemas(showtimes) } </Text>
 						);
-					}}keyExtractor={movie => movie.name}
+					}}keyExtractor={movie => {return movie.id.toString()}}
 				/>
 			</View>
 		);
