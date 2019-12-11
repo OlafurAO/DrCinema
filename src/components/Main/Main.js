@@ -38,8 +38,8 @@ class Main extends React.Component{
 			);
 		}
 		return(
-			<View>
-				<Text> Loading </Text>
+			<View style={{alignSelf: 'center', marginTop: 300}}>
+				<Text style={{fontSize: 20}}> Loading . . . </Text>
 			</View>
 		)
 	}

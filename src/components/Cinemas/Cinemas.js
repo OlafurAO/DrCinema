@@ -41,8 +41,6 @@ class Cinemas extends React.Component {
 					if(newCinema['description'] !== null) {
 						newCinema['description'] = JSON.stringify(newCinema['description'])
 						newCinema['description'].replace('/<[^>]*>?/gm', '');
-						console.log(newCinema['description'])
-
 					}
 				}
 			});
