@@ -24,15 +24,30 @@ class Cinemas extends React.Component {
 
 		/*
 		var newCinemas = [];
+		for(var i = 0; i < cinemas.length; i++) {
+			var newCinema = {}
+			for(var key in cinemas[i]) {
+				newCinema[i][key.trim()] = cinemas[i][key];
+			}
+			newCinemas.push(newCinema);
+		}*/
+
+		var newCinemas = [];
 		for(const cinema of cinemas) {
 			var newCinema = {};
 			Object.keys(cinema).map(key => {
 				newCinema[key.trim()] = cinema[key];
-				newCinemas.push(newCinema);
-			});
-		}*/
+				if(key === 'description') {
+					if(newCinema['description'] !== null) {
+						newCinema['description'] = JSON.stringify(newCinema['description'])
+						newCinema['description'].replace('/<[^>]*>?/gm', '');
+						console.log(newCinema['description'])
 
-		newCinemas = cinemas;
+					}
+				}
+			});
+			newCinemas.push(newCinema);
+		}
 
 		this.setState({
 			cinemas: newCinemas,
