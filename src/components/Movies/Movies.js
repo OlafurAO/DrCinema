@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import Header from '../Header/Header';
 import { getMovies } from '../../services/apiService';
 
@@ -41,11 +41,19 @@ class Movies extends React.Component {
 					numColumns={1}
 					data={this.state.movies}
 					initialNumToRender={50}
+
 					renderItem={ ({ item: { id, title, poster, plot, duration, year, genre, showtimes }}) => {
-						console.log(showtimes.length);
 						return(
-							<Text> { title } </Text>,
-							<Text> { this.getcinemas(showtimes) } </Text>
+							<View>
+								<TouchableOpacity onPress={
+									() => this.props.navigation.navigate('Movie', {
+										id: id, name: title, poster: poster, plot: plot, duration:duration, year: year, gemre:genre, showtimes:showtimes
+									})}>
+									<Text> { title } </Text>
+								</TouchableOpacity>
+
+							</View>
+							//<Text> { this.getcinemas(showtimes) } </Text>
 						);
 					}}keyExtractor={movie => {return movie.id.toString()}}
 				/>

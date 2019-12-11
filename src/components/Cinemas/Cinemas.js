@@ -60,8 +60,6 @@ class Cinemas extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.token)
-		console.log('cinemas');
 		return(
 			<View style={styles.container}>
 				<FlatList
