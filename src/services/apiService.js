@@ -59,3 +59,18 @@ export const getMovies = async(token, setMovies) => {
 		setMovies(response);
 	}).catch(error => console.log(error));
 }
+
+export const getUpcomingMovies = async(token, setUpcomingMovies) => {
+	fetch('http://api.kvikmyndir.is/upcoming', {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'x-access-token': token
+		},
+	}).then(response => {
+		return response.json();
+	}).then(response => {
+		setUpcomingMovies(response);
+	}).catch(error => console.log(error));
+}
