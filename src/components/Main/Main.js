@@ -28,8 +28,7 @@ class Main extends React.Component{
 		});
 	}
 
-	render() {
-		if(this.state.accessToken !== null) {
+	render() {if(this.state.accessToken !== null) {
 			return(
 				<View style={styles.container}>
 					<Header navigation={ this.props.navigation } token={ this.state.accessToken }/>
@@ -40,7 +39,6 @@ class Main extends React.Component{
 		return(
 			<Text> Loading </Text>
 		)
-
 	}
 }
 

@@ -23,10 +23,17 @@ class Movies extends React.Component {
 		});
 	}
 
+	getcinemas(showtimes){
+		cinemas = [];
+		for (let i = 0; i< showtimes.length; i++){
+			cinemas.push(<td>showtimes[i].cinema</td>);
+		};
+		return cinemas;
+	}
+
 	render() {
 		const { navigation } = this.props;
 		const token = navigation.getParam('token');
-
 		return(
 			<View>
 				<Header navigation={ navigation } token={ token }/>
@@ -34,9 +41,11 @@ class Movies extends React.Component {
 					numColumns={1}
 					data={this.state.movies}
 					initialNumToRender={50}
-					renderItem={ ({ item: { id, title, poster, plot, duration, year, genre }}) => {
+					renderItem={ ({ item: { id, title, poster, plot, duration, year, genre, showtimes }}) => {
+						console.log(showtimes.length);
 						return(
-							<Text> { title } </Text>
+							<Text> { title } </Text>,
+							<Text> { this.getcinemas(showtimes) } </Text>
 						);
 					}}keyExtractor={movie => movie.name}
 				/>

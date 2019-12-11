@@ -33,6 +33,7 @@ class Cinemas extends React.Component {
 
 	render() {
 		console.log(this.props.token)
+		console.log('cinemas');
 		return(
 			<View style={styles.container}>
 				<FlatList
@@ -40,7 +41,6 @@ class Cinemas extends React.Component {
 	        data={this.state.cinemas}
 					initialNumToRender={50}
 	        renderItem={ ({ item: { id, name, address, city, description, phone, website }}) => {
-						console.log('cinema');
 						return(
 							<View style={styles.cinema}>
 								<TouchableOpacity onPress={
