@@ -33,9 +33,15 @@ class Movies extends React.Component {
 
 
 	setUpcomingMovies(upcoming) {
+		upcoming = upcoming.sort((a, b) => {
+			console.log(a['title'])
+			console.log(a['release-dateIS'])
+			return a['release-dateIS'] < b['release-dateIS'];
+		});
+
 		this.setState({
 			upcoming: upcoming,
-		})
+		});
 	}
 
 	render() {

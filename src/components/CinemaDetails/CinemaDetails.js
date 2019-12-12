@@ -96,7 +96,16 @@ class CinemaDetails extends React.Component{
 									<View>
 										<Text> { title } </Text>
 										<Text> { year } </Text>
-										<Text> { genres[0].Name }</Text>
+										<FlatList
+											numColumns={2}
+											data={genres}
+											initialNumToRender={50}
+											renderItem={ ({ item: { Name }}) => {
+												return(
+													<Text style={{fontSize: 10}}> { Name }, </Text>
+												);
+											}}keyExtractor={genre => {return genre.ID.toString()}}
+										/>
 									</View>
 								</TouchableOpacity>
 							)
