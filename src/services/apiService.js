@@ -30,7 +30,7 @@ export const getToken = async(setState) => {
 }
 
 export const getCinemas = async(token, setCinemas) => {
-	fetch('http://api.kvikmyndir.is/cinemas', {
+	fetch('http://api.kvikmyndir.is/theaters', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',

@@ -12,8 +12,8 @@ const StackNavigator = createStackNavigator({
 	Main,
 	Cinemas,
 	CinemaDetails,
-	Movie,
 	Movies,
+	Movie,
 },
 {
 	headerMode: 'none',

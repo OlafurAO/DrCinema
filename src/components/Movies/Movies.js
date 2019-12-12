@@ -1,10 +1,7 @@
 import React from 'react';
-<<<<<<< HEAD
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-=======
-import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
->>>>>>> b1cf5d195faf116569f0344796e3c9d774f4debc
+import { View, Text, FlatList, Image, TouchableOpacity, WebView } from 'react-native';
 import Header from '../Header/Header';
+import { Video } from 'expo-av';
 import { getMovies, getUpcomingMovies } from '../../services/apiService';
 import styles from './styles';
 
@@ -23,6 +20,8 @@ class Movies extends React.Component {
 		this.state = {
 			movies: null,
 			upcoming: null,
+			playTrailer: false,
+			movieId: null,
 		}
 	}
 
@@ -50,28 +49,61 @@ class Movies extends React.Component {
 					numColumns={1}
 					data={this.state.upcoming}
 					initialNumToRender={50}
+					renderItem={ ({ item: { id, title, poster, plot, duration, year, genre, omdb, showtimes, trailers }}) => {
+						if(trailers[0] !== undefined) {
+							if(trailers[0]['results'][0] !== undefined) {
+								//console.log(trailers[0]['results'][0]['url'])
+							} else {
+								trailers = undefined;
+							}
+						} else {
+							trailers = undefined;
+						}
 
-					renderItem={ ({ item: { id, title, poster, plot, duration, year, genre, omdb, showtimes }}) => {
-						console.log(omdb)
 						return(
-							<TouchableOpacity style={styles.movie}>
-								<Image
-									style={ styles.poster }
-									resizeMode='cover'
-									source={{uri: poster}}
-								/>
-								<TouchableOpacity onPress={
-									() => this.props.navigation.navigate('Movie', {
-									id: id, name: title, poster: poster, plot: plot, duration:duration, year: year, gemre:genre, showtimes:showtimes
-								})}>
-								<Text style={styles.movieTitle}> { title } </Text>
-							</TouchableOpacity>
-								{omdb[0] !== undefined ?
-									<Text style={styles.movieRelease}> { omdb[0]['Released'] } </Text>
+							<View>
+								<TouchableOpacity style={styles.movie} onPress={
+									() => {
+										this.setState({
+											playTrailer: this.state.movieId === id ? false : true,
+											movieId: id,
+										});
+										this.forceUpdate();
+									}
+								}>
+									<Image
+										style={ styles.poster }
+										resizeMode='cover'
+										source={{uri: poster}}
+									/>
+									<Text style={styles.movieTitle}> { title } </Text>
+									{omdb[0] !== undefined ?
+										<Text style={styles.movieRelease}> { omdb[0]['Released'] } </Text>
+										:
+										<Text style={styles.movieRelease}> N/A </Text>
+									}
+								</TouchableOpacity>
+								{this.state.playTrailer === true && this.state.movieId == id &&
+									trailers !== undefined ?
+									<View style={{
+										height: 250, borderRadius: 40,
+										width: 250, alignSelf: 'center',
+										position: 'absolute', top: 25
+									}}>
+										<WebView
+											style={{
+
+											}}
+											javaScriptEnabled={true}
+											source={{
+												uri: trailers[0]['results'][0]['url'],
+											}}
+										/>
+									</View>
 									:
-									<Text style={styles.movieRelease}> N/A </Text>
+									null
 								}
-							</TouchableOpacity>
+							</View>
 						);
 					}}keyExtractor={movie => {return movie.id.toString()}}
 				/>

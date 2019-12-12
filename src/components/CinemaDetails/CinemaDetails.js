@@ -46,6 +46,7 @@ class CinemaDetails extends React.Component{
 	render() {
 		const { navigation } = this.props;
 		const token = navigation.getParam('token');
+		const cinemaId = navigation.getParam('id');
 		const name = navigation.getParam('name');
 		const description = navigation.getParam('description');
 		const address = navigation.getParam('address');
@@ -77,10 +78,15 @@ class CinemaDetails extends React.Component{
 						numColumns={1}
 			      data={this.state.movies}
 						initialNumToRender={50}
-			      renderItem={ ({ item: { id, title, year, poster, genres }}) => {
+			      renderItem={ ({ item: { id, title, year, poster, genres, plot, duration, showtimes }}) => {
 							return(
-								<TouchableOpacity style={styles.movie}>
-									<View>
+								<TouchableOpacity style={styles.movie} onPress={
+									() => navigation.navigate('Movie', {
+									cinemaId: cinemaId, id: id, name: title, poster: poster,
+									plot: plot, duration: duration, year: year, genre: genres,
+									showtimes: showtimes
+								})}>
+									<View style={styles.imageBorder}>
 										<Image
 											style={ styles.poster }
 											resizeMode='cover'
