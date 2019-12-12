@@ -1,9 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-=======
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
->>>>>>> b1cf5d195faf116569f0344796e3c9d774f4debc
 import Header from '../Header/Header';
 import { getMovies, getUpcomingMovies } from '../../services/apiService';
 import styles from './styles';
@@ -52,7 +48,6 @@ class Movies extends React.Component {
 					initialNumToRender={50}
 
 					renderItem={ ({ item: { id, title, poster, plot, duration, year, genre, omdb, showtimes }}) => {
-						console.log(omdb)
 						return(
 							<TouchableOpacity style={styles.movie}>
 								<Image

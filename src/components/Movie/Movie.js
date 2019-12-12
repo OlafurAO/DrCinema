@@ -40,10 +40,10 @@ class Movie extends React.Component {
     let rows= [];
     for(let i = 0; i< showtimes.length; i++) {
       //let length = showtimes[i].schedule.length;
-      //let times = [];
-      //  for(let j = 0; j< length; i++) {
-      //    times.push('this');
-      //  }
+      let times = [];
+        for(let j = 0; j< showtimes[i].schedule.length; i++) {
+          times.push('$(showtimes[i].schedule.time)');
+        }
         rows.push([showtimes[i].cinema.name, 'times']);
     }
     return rows;
