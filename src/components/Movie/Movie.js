@@ -1,5 +1,5 @@
 import React from 'react';
-import {  View, Text, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+import {  View, Text, FlatList, TouchableOpacity, ScrollView, Image } from 'react-native';
 import Header from '../Header/Header';
 import { getMovies } from '../../services/apiService';
 import styles from './styles.js';
@@ -36,7 +36,7 @@ class Movie extends React.Component {
     let genres = this.getGenres();
     rows.push(['Title', this.state.name]);
     rows.push(['Plot', this.state.plot]);
-    rows.push(['Duration', this.state.omdb.Runtime]);
+    rows.push(['Duration', this.state.omdb[0].Runtime]);
     rows.push(['Release Date ', this.state.year]);
     rows.push(['Genres', genres]);
     return rows;
@@ -46,7 +46,6 @@ class Movie extends React.Component {
 
   cinemaTable(showtimes) {
     let rows= [];
-    console.log(this.state.omdb);
     for(let i = 0; i< showtimes.length; i++) {
       let times = [];
       if(showtimes[i].cinema.id == this.state.cinemaId){
@@ -63,6 +62,11 @@ class Movie extends React.Component {
     const { navigation } = this.props;
     return(
       <ScrollView>
+        <Image
+          style={ styles.poster }
+          resizeMode='cover'
+          source={{uri: this.state.poster}}
+        />
         <Text style= {styles.Text}>  {this.state.name}  </Text>
         <Table style= {styles.table} borderstyle = {styles.borderStyle}>
           <Row data={[]} style={styles.head} textStyle={styles.text}/>
