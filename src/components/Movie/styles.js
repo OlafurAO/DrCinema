@@ -21,4 +21,11 @@ export default StyleSheet.create({
 		borderWidth: 2,
 		borderColor: '#c8e1ff',
 	},
+		poster: {
+			alignSelf: 'center',
+			marginTop: 200,
+			width: 250,
+			height: 250,
+			borderRadius: 40,
+		},
 });
