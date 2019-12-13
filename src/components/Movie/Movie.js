@@ -1,5 +1,5 @@
 import React from 'react';
-import {  View, Text, FlatList, TouchableOpacity, ScrollView, Image } from 'react-native';
+import {  View, Text, FlatList, Linking, TouchableOpacity, ScrollView, Image } from 'react-native';
 import Header from '../Header/Header';
 import { getMovies } from '../../services/apiService';
 import styles from './styles.js';
@@ -44,19 +44,35 @@ class Movie extends React.Component {
 
   }
 
+  goToWebsite(url) {
+		Linking.openURL('http://' + url)
+  	.catch(err => console.log(err));
+	}
+
   cinemaTable(showtimes) {
+    const buying_link = (data) =>{
+      return(
+        <TouchableOpacity onPress={() => this.goToWebsite(data[1])}>
+          <View>
+            <Text>{data[0]}</Text>
+          </View>
+        </TouchableOpacity>
+      )
+    };
+
     let rows= [];
     for(let i = 0; i< showtimes.length; i++) {
       let times = [];
       if(showtimes[i].cinema.id == this.state.cinemaId){
         for(let j = 0; j< showtimes[i].schedule.length; j++) {
-          times.push(showtimes[i].schedule[j].time, ' ');
+              times.push(buying_link(showtimes[i].schedule[j].time ,showtimes[i].schedule[j].purchase_url));
         }
-        rows.push([showtimes[i].cinema.name, times]);
+        rows.push(showtimes[i].cinema.name , times );
       }
     }
     return rows;
   }
+
 
   render() {
     const { navigation } = this.props;
@@ -74,7 +90,7 @@ class Movie extends React.Component {
         </Table>
         <Table  style={styles.table}>
           <Row data={[]} style={styles.head} textStyle={styles.text}/>
-          <Rows data={this.cinemaTable(this.state.showtimes)} textStyle={styles.text}/>
+          <Row data={this.cinemaTable(this.state.showtimes)} textStyle={styles.text}/>
         </Table>
       </ScrollView>
     );
