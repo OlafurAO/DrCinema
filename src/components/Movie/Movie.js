@@ -49,25 +49,35 @@ class Movie extends React.Component {
   	.catch(err => console.log(err));
 	}
 
-  cinemaTable(showtimes) {
-    const buying_link = (data) =>{
+  getCinemaId(showtimes){
+    for(let i = 0; i< showtimes.length; i++) {
+      if(showtimes[i].cinema.id == this.state.cinemaId){
+        return showtimes[i].cinema.name;
+      }
+    }
+  }
+
+
+    buying_link(data){
       return(
-        <button onPress={() => this.goToWebsite(data[1])}>
+        <TouchableOpacity onPress={() => this.goToWebsite(data[1])}>
           <View>
             <Text>{data[0]}</Text>
           </View>
-        </button>
+        </TouchableOpacity>
       )
     };
+
+  cinemaTable(showtimes) {
 
     let rows= [];
     for(let i = 0; i< showtimes.length; i++) {
       let times = [];
       if(showtimes[i].cinema.id == this.state.cinemaId){
+        rows.push(showtimes[i].cinema.name);
         for(let j = 0; j< showtimes[i].schedule.length; j++) {
-            //  times.push(buying_link(showtimes[i].schedule[j].time ,showtimes[i].schedule[j].purchase_url));
+          rows.push(this.buying_link([showtimes[i].schedule[j].time ,showtimes[i].schedule[j].purchase_url]));
         }
-        rows.push(showtimes[i].cinema.name , times );
       }
     }
     return rows;
@@ -83,14 +93,17 @@ class Movie extends React.Component {
           resizeMode='cover'
           source={{uri: this.state.poster}}
         />
-        <Text style= {styles.Text}>  {this.state.name}  </Text>
-        <Table style= {styles.table} borderstyle = {styles.borderStyle}>
+        <View style={{alignSelf: 'center', alignItems: 'center', justifyContent: 'center'}}>
+          <Text style={styles.title}>  {this.state.name}  </Text>
+        </View>
+
+        <Table style={styles.table} borderstyle = {styles.borderStyle}>
           <Row data={[]} style={styles.head} textStyle={styles.text}/>
-          <Rows data={this.detailsTable()} textStyle={styles.text}/>
+          <Rows data={this.detailsTable()} style={styles.rows} textStyle={styles.me}/>
         </Table>
         <Table  style={styles.table}>
-          <Row data={[]} style={styles.head} textStyle={styles.text}/>
-          <Row data={this.cinemaTable(this.state.showtimes)} textStyle={styles.text}/>
+          <Row data={[this.getCinemaId(this.state.showtimes)]} style={styles.head} textStyle={styles.me}/>
+          <Row data={this.cinemaTable(this.state.showtimes)} style={styles.rows} textStyle={styles.me}/>
         </Table>
       </ScrollView>
     );

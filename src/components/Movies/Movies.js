@@ -41,7 +41,6 @@ class Movies extends React.Component {
 	render() {
 		const { navigation } = this.props;
 		const token = navigation.getParam('token');
-		console.log(this.state.duration);
 		return(
 			<View>
 				<Header navigation={ navigation } token={ token }/>
