@@ -54,11 +54,19 @@ export default StyleSheet.create({
 		padding: 10,
 		marginBottom: 10,
 		flexDirection: 'row',
+		alignItems: 'center',
+	},
+
+	imageBorder: {
+		marginTop: 5,
+		borderRadius: 60,
+		borderWidth: 4,
+		marginRight: 20,
 	},
 
 	poster: {
-		marginTop: 5,
-		width: 50,
-		height: 50,
+		width: 100,
+		height: 100,
+		borderRadius: 60,
 	}
 });

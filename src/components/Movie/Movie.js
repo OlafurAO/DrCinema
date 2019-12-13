@@ -3,7 +3,6 @@ import {  View, Text, FlatList, TouchableOpacity } from 'react-native';
 import Header from '../Header/Header';
 import { getMovies } from '../../services/apiService';
 import styles from './styles.js';
-
 import { Table, Row, Rows } from 'react-native-table-component';
 
 class Movie extends React.Component {
