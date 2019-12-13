@@ -34,7 +34,6 @@ class Movie extends React.Component {
   detailsTable() {
     let rows= [];
     let genres = this.getGenres();
-    rows.push(['Title', this.state.name]);
     rows.push(['Plot', this.state.plot]);
     rows.push(['Duration', this.state.omdb[0].Runtime]);
     rows.push(['Release Date ', this.state.year]);
@@ -67,14 +66,17 @@ class Movie extends React.Component {
           resizeMode='cover'
           source={{uri: this.state.poster}}
         />
-        <Text style= {styles.Text}>  {this.state.name}  </Text>
-        <Table style= {styles.table} borderstyle = {styles.borderStyle}>
+        <View style={{alignSelf: 'center', alignItems: 'center', justifyContent: 'center'}}>
+          <Text style={styles.title}>  {this.state.name}  </Text>
+        </View>
+
+        <Table style={styles.table} borderstyle = {styles.borderStyle}>
           <Row data={[]} style={styles.head} textStyle={styles.text}/>
-          <Rows data={this.detailsTable()} textStyle={styles.text}/>
+          <Rows data={this.detailsTable()} style={styles.rows} textStyle={styles.me}/>
         </Table>
         <Table  style={styles.table}>
-          <Row data={[]} style={styles.head} textStyle={styles.text}/>
-          <Rows data={this.cinemaTable(this.state.showtimes)} textStyle={styles.text}/>
+          <Row data={[]} style={styles.head} textStyle={styles.me}/>
+          <Rows data={this.cinemaTable(this.state.showtimes)} style={styles.rows} textStyle={styles.me}/>
         </Table>
       </ScrollView>
     );

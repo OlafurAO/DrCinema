@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import tokenReducer from '../../reducers/tokenReducer';
 import Cinemas from '../Cinemas/Cinemas';
 import Header from '../Header/Header';
 import { getToken } from '../../services/apiService';
@@ -24,18 +26,23 @@ class Main extends React.Component{
 		});
 	}
 
-	render() {if(this.state.accessToken !== null) {
+	render() {
+		if(this.state.accessToken !== null) {
 			return(
-				<View style={styles.container}>
-					<Header navigation={ this.props.navigation } token={ this.state.accessToken }/>
-					<Cinemas navigation={ this.props.navigation } token={ this.state.accessToken }/>
-				</View>
+				<Provider store={ createStore(tokenReducer) }>
+					<View style={styles.container}>
+						<Header navigation={ this.props.navigation } token={ this.state.accessToken }/>
+						<Cinemas navigation={ this.props.navigation } token={ this.state.accessToken }/>
+					</View>
+				</Provider>
 			);
 		}
 		return(
-			<View style={{alignSelf: 'center', marginTop: 300}}>
-				<Text style={{fontSize: 20}}> Loading . . . </Text>
-			</View>
+			<Provider store={ createStore(tokenReducer) }>
+				<View style={{alignSelf: 'center', marginTop: 300}}>
+					<Text style={{fontSize: 20}}> Loading . . . </Text>
+				</View>
+			</Provider>
 		)
 	}
 }
