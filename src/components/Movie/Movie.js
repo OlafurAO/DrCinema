@@ -45,7 +45,7 @@ class Movie extends React.Component {
   }
 
   goToWebsite(url) {
-		Linking.openURL('http://' + url)
+		Linking.openURL(url)
   	.catch(err => console.log(err));
 	}
 
@@ -62,7 +62,7 @@ class Movie extends React.Component {
       return(
         <TouchableOpacity onPress={() => this.goToWebsite(data[1])}>
           <View>
-            <Text>{data[0]}</Text>
+            <Text style={{color: 'blue'}}>{data[0]}</Text>
           </View>
         </TouchableOpacity>
       )

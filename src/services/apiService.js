@@ -19,7 +19,9 @@ export const getToken = async(setState) => {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'pragma': 'no-cache',
+			'cache-control': 'no-cache',
 		},
 		body: JSON.stringify(credentials),
 	}).then(response => {
@@ -35,7 +37,9 @@ export const getCinemas = async(token, setCinemas) => {
 		headers: {
 			'Content-Type': 'application/json',
 			'Accept': 'application/json',
-			'x-access-token': token
+			'x-access-token': token,
+			'pragma': 'no-cache',
+			'cache-control': 'no-cache',
 		},
 	}).then(response => {
 		return response.json();
@@ -50,7 +54,9 @@ export const getMovies = async(token, setMovies) => {
 		headers: {
 			'Content-Type': 'application/json',
 			'Accept': 'application/json',
-			'x-access-token': token
+			'x-access-token': token,
+			'pragma': 'no-cache',
+			'cache-control': 'no-cache',
 		},
 	}).then(response => {
 		return response.json();
@@ -66,7 +72,9 @@ export const getUpcomingMovies = async(token, setUpcomingMovies) => {
 		headers: {
 			'Content-Type': 'application/json',
 			'Accept': 'application/json',
-			'x-access-token': token
+			'x-access-token': token,
+			'pragma': 'no-cache',
+			'cache-control': 'no-cache',
 		},
 	}).then(response => {
 		return response.json();
