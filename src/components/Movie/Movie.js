@@ -52,11 +52,11 @@ class Movie extends React.Component {
   cinemaTable(showtimes) {
     const buying_link = (data) =>{
       return(
-        <TouchableOpacity onPress={() => this.goToWebsite(data[1])}>
+        <button onPress={() => this.goToWebsite(data[1])}>
           <View>
             <Text>{data[0]}</Text>
           </View>
-        </TouchableOpacity>
+        </button>
       )
     };
 
@@ -65,7 +65,7 @@ class Movie extends React.Component {
       let times = [];
       if(showtimes[i].cinema.id == this.state.cinemaId){
         for(let j = 0; j< showtimes[i].schedule.length; j++) {
-              times.push(buying_link(showtimes[i].schedule[j].time ,showtimes[i].schedule[j].purchase_url));
+            //  times.push(buying_link(showtimes[i].schedule[j].time ,showtimes[i].schedule[j].purchase_url));
         }
         rows.push(showtimes[i].cinema.name , times );
       }
