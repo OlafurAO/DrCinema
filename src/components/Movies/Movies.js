@@ -33,15 +33,9 @@ class Movies extends React.Component {
 
 
 	setUpcomingMovies(upcoming) {
-		upcoming = upcoming.sort((a, b) => {
-			console.log(a['title'])
-			console.log(a['release-dateIS'])
-			return a['release-dateIS'] < b['release-dateIS'];
-		});
-
 		this.setState({
 			upcoming: upcoming,
-		});
+		})
 	}
 
 	render() {
@@ -66,7 +60,6 @@ class Movies extends React.Component {
 							trailers = undefined;
 						}
 
-					renderItem={ ({ item: { id, title, poster, plot, duration, year, genre, omdb, showtimes }}) => {
 						return(
 							<View>
 								<TouchableOpacity style={styles.movie} onPress={
@@ -112,7 +105,7 @@ class Movies extends React.Component {
 								}
 							</View>
 						);
-					}}keyExtractor={movie => {return movie.id.toString()}}
+					}} keyExtractor={movie => {return movie.id.toString()}}
 				/>
 			</View>
 		);

@@ -17,34 +17,45 @@ class Movie extends React.Component {
       plot: navigation.getParam('plot'),
       duration : navigation.getParam('duration'),
       year : navigation.getParam('year'),
-      gemre : navigation.getParam('genre'),
+      genre : navigation.getParam('genre'),
       showtimes : navigation.getParam('showtimes'),
+      cinemaId: navigation.getParam('cinemaId'),
     }
+  }
+
+  getGenres(){
+    let genreslist = [];
+    console.log(this.state.genre);
+    for (let i = 0; i < this.state.genre.length; i++){
+      genreslist.push(this.state.genre[i].name);
+    }
+    return genreslist;
   }
 
   detailsTable() {
     let rows= [];
+    let genres = this.getGenres();
     rows.push(['Title', this.state.name]);
     rows.push(['Plot', this.state.plot]);
     rows.push(['Duration', this.state.duration]);
     rows.push(['Release Date ', this.state.year]);
-    rows.push(['Genres', this.state.genre]);
+    rows.push(['Genres', genres]);
     return rows;
 
 
   }
 
   cinemaTable(showtimes) {
-
     let rows= [];
     for(let i = 0; i< showtimes.length; i++) {
-      //let length = showtimes[i].schedule.length;
       let times = [];
-        for(let j = 0; j< showtimes[i].schedule.length; i++) {
-          times.push('$(showtimes[i].schedule.time)');
+      if(showtimes[i].cinema.id == this.state.cinemaId){
+        for(let j = 0; j< showtimes[i].schedule.length; j++) {
+          times.push(showtimes[i].schedule[j].time, ' ');
         }
-        rows.push([showtimes[i].cinema.name, 'times']);
+        rows.push([showtimes[i].cinema.name, times]);
     }
+  }
     return rows;
   }
 

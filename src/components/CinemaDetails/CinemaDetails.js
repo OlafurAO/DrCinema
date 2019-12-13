@@ -84,7 +84,7 @@ class CinemaDetails extends React.Component{
 									() => navigation.navigate('Movie', {
 									cinemaId: cinemaId, id: id, name: title, poster: poster,
 									plot: plot, duration: duration, year: year, genre: genres,
-									showtimes: showtimes
+									showtimes: showtimes, cinema: this.state.cinemaId,
 								})}>
 									<View style={styles.imageBorder}>
 										<Image
