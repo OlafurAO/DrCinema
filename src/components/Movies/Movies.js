@@ -33,20 +33,15 @@ class Movies extends React.Component {
 
 
 	setUpcomingMovies(upcoming) {
-		upcoming = upcoming.sort((a, b) => {
-			console.log(a['title'])
-			console.log(a['release-dateIS'])
-			return a['release-dateIS'] < b['release-dateIS'];
-		});
-
 		this.setState({
 			upcoming: upcoming,
-		});
+		})
 	}
 
 	render() {
 		const { navigation } = this.props;
 		const token = navigation.getParam('token');
+		console.log(this.state.duration);
 		return(
 			<View>
 				<Header navigation={ navigation } token={ token }/>
@@ -55,7 +50,7 @@ class Movies extends React.Component {
 					numColumns={1}
 					data={this.state.upcoming}
 					initialNumToRender={50}
-					renderItem={ ({ item: { id, title, poster, plot, duration, year, genre, omdb, showtimes, trailers }}) => {
+					renderItem={ ({ item: { id, title, poster, plot, year, genre, omdb, showtimes, trailers }}) => {
 						if(trailers[0] !== undefined) {
 							if(trailers[0]['results'][0] !== undefined) {
 								//console.log(trailers[0]['results'][0]['url'])
@@ -111,7 +106,7 @@ class Movies extends React.Component {
 								}
 							</View>
 						);
-					}}keyExtractor={movie => {return movie.id.toString()}}
+					}} keyExtractor={movie => {return movie.id.toString()}}
 				/>
 			</View>
 		);

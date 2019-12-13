@@ -1,14 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { Provider } from 'react-redux';
 import Cinemas from '../Cinemas/Cinemas';
 import Header from '../Header/Header';
 import { getToken } from '../../services/apiService';
 import styles from './styles';
-
-const credentials = {
-	username: 'stefant17',
-	password: 'Hilla104',
-}
 
 class Main extends React.Component{
 	componentDidMount() {

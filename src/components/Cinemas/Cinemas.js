@@ -19,7 +19,7 @@ class Cinemas extends React.Component {
 
 	setCinemas(cinemas) {
 		cinemas = cinemas.sort((a, b) => {
-			return a.name > b.name;
+			return a.name.localeCompare(b.name, 'is')
 		});
 
 		var newCinemas = [];
