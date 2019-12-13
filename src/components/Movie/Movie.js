@@ -1,5 +1,5 @@
 import React from 'react';
-import {  View, Text, FlatList, TouchableOpacity } from 'react-native';
+import {  View, ScrollView, Text, FlatList, TouchableOpacity } from 'react-native';
 import Header from '../Header/Header';
 import { getMovies } from '../../services/apiService';
 import styles from './styles.js';
@@ -51,7 +51,7 @@ class Movie extends React.Component {
   render() {
     const { navigation } = this.props;
     return(
-      <View>
+      <ScrollView>
         <Text style= {styles.Text}>  {this.state.name}  </Text>
         <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
           <Row data={[]} style={styles.head} textStyle={styles.text}/>
@@ -61,7 +61,7 @@ class Movie extends React.Component {
           <Row data={[]} style={styles.head} textStyle={styles.text}/>
           <Rows data={this.cinemaTable(this.state.showtimes)} textStyle={styles.text}/>
         </Table>
-      </View>
+      </ScrollView>
     );
   }
 }
