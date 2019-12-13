@@ -41,6 +41,7 @@ class Movies extends React.Component {
 	render() {
 		const { navigation } = this.props;
 		const token = navigation.getParam('token');
+		console.log(this.state.duration);
 		return(
 			<View>
 				<Header navigation={ navigation } token={ token }/>
@@ -49,7 +50,7 @@ class Movies extends React.Component {
 					numColumns={1}
 					data={this.state.upcoming}
 					initialNumToRender={50}
-					renderItem={ ({ item: { id, title, poster, plot, duration, year, genre, omdb, showtimes, trailers }}) => {
+					renderItem={ ({ item: { id, title, poster, plot, year, genre, omdb, showtimes, trailers }}) => {
 						if(trailers[0] !== undefined) {
 							if(trailers[0]['results'][0] !== undefined) {
 								//console.log(trailers[0]['results'][0]['url'])

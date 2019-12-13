@@ -78,12 +78,12 @@ class CinemaDetails extends React.Component{
 						numColumns={1}
 			      data={this.state.movies}
 						initialNumToRender={50}
-			      renderItem={ ({ item: { id, title, year, poster, genres, plot, duration, showtimes }}) => {
+			      renderItem={ ({ item: { id, title, year, poster, genres, plot, showtimes, omdb }}) => {
 							return(
 								<TouchableOpacity style={styles.movie} onPress={
 									() => navigation.navigate('Movie', {
 									cinemaId: cinemaId, id: id, name: title, poster: poster,
-									plot: plot, duration: duration, year: year, genre: genres,
+									plot: plot, omdb: omdb, year: year, genre: genres,
 									showtimes: showtimes, cinema: this.state.cinemaId,
 								})}>
 									<View style={styles.imageBorder}>

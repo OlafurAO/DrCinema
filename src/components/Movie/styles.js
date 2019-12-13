@@ -6,9 +6,19 @@ export default StyleSheet.create({
 		height: 200,
 		margin: 50,
 	},
+
 	image: {
 		width: 115,
 		height: 115,
 		margin: 10,
-	}
+	},
+
+	table: {
+		margin: 10,
+	},
+
+	borderStyle:{
+		borderWidth: 2,
+		borderColor: '#c8e1ff',
+	},
 });
